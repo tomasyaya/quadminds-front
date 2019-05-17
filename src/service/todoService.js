@@ -10,11 +10,22 @@ class TodoService {
 
   getTodos = async () => {
     try {
-      await this.api.get('/')
+     const { data } = await this.api.get('/todos')
+     return data
     } catch(err) {
       console.log(err)
     }
   }
+
+  createTodo = async body => {
+    try {
+      const { data } = await this.api.post('/todos', body)
+      return data
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
 }
 
 const todoService = new TodoService();

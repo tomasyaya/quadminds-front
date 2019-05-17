@@ -1,4 +1,4 @@
-import { GET_TODOS } from '../actions/actionType';
+import { GET_TODOS, CREATE_TODO } from '../actions/actionType';
 
 const initialState = {
   todos: []
@@ -11,6 +11,11 @@ const todoReducer = (state = initialState, action) => {
       return {
         ...state,
         todos: [...payload]
+      }
+    case CREATE_TODO:
+      return {
+        ...state,
+        todos: [...state.todos, payload]
       }
     default:
     return {

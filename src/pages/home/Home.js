@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import todoService from '../../service/todoService';
+import React from 'react';
+import Form from '../../components/form/Form';
+import TodosDisplay from '../../components/todosDisplay/TodosDisplay';
 
 const Home = () => {
 
-  useEffect(() => {
-    todoService.getTodos()
-  }, [])
   return(
-    <h1>Hello</h1>
+    <>
+      <Form />
+      <TodosDisplay />
+    </>
   )
 }
 
