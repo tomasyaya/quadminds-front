@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { createTodo } from '../../actions/actions';
+import { createTodo, updateTodo } from '../../actions/actions';
 
 
 const Form = props => {
@@ -9,7 +9,7 @@ const Form = props => {
   const [ title, setTitle ] = useState('')
   const [ body, setBody ] = useState('')
 
-  const { createTodo } = props;
+  const { createTodo, updateTodo, id } = props;
 
   const newTodo = { title, body }
   const valMessage = validation ? <p>{ "Complete all fields" }</p> : null
@@ -21,7 +21,15 @@ const Form = props => {
       return
     }
     try {
-      await createTodo(todo)
+      if(!id){
+        await createTodo(todo)
+        setTitle('')
+        setBody('')
+      }
+      if(id) {
+        console.log(newTodo)
+        await updateTodo(id, newTodo)
+      }
     } catch(err) {
       console.log(err)
     }
@@ -30,16 +38,15 @@ const Form = props => {
   return(
     <form onSubmit={(e) => {
       e.preventDefault()
-      handleSubmit(newTodo)
-    }}>
+      handleSubmit(newTodo)}}>
 
       { valMessage }
 
-      <input type="text" onChange={(e) => { 
+      <input type="text" value={title} onChange={(e) => { 
         setTitle(e.target.value) 
         setValidation(false) }}/>
 
-      <input type="text" onChange={(e) => { 
+      <input type="text" value={body} onChange={(e) => { 
         setBody(e.target.value) 
         setValidation(false)}}/>
 
@@ -50,4 +57,4 @@ const Form = props => {
 
 
 
-export default connect(null, { createTodo })(Form);
+export default connect(null, { createTodo, updateTodo })(Form);

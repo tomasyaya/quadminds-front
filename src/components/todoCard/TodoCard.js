@@ -1,20 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { string } from 'prop-types';
+import Form from '../forms/Form';
 
 const TodoCard = props => {
 
-  const { title, body } = props;
+  const [ edit, setEdit ] = useState(false)
+
+  const { title, body, id } = props;
+  
+  const showTitle = !edit ? <h4>{ title }</h4> : null;
+  const showBody = !edit ? <p>{ body }</p> : null;
+
+  const showForm = edit ? <Form id={id} /> : null;
+
   return (
     <div>
-      <h4>{ title }</h4>
-      <p>{ body }</p>
+      { showTitle }
+      { showBody }
+      { showForm }
+      <button onClick={() => setEdit(true)}>
+        edit
+      </button>
     </div>
   )
 }
 
 TodoCard.propTypes = {
-  title: PropTypes.string,
-  body: PropTypes.string     
+  title: string,
+  body: string     
 }
 
 export default TodoCard;
