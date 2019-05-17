@@ -1,29 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getTodos } from '../../actions/actions';
+import TodoList from '../todoList/TodoList';
 
 class TodosDisplay extends Component {
 
-  async componentDidMount() {
+  state = {
+    isLoaded: false
+  }
+
+  componentDidMount = async () => {
     const { getTodos } = this.props;
     try {
       await getTodos()
+      this.setState({ isLoaded: true })
     } catch(err) {
       console.log(err)
     }
   }
 
   render() {
-    console.log(this.props.todos)
+    const { isLoaded } = this.state;
+    const { todos } = this.props;
+    console.log(todos)
+    const undoneTodos = isLoaded ? <TodoList todos={ todos } title={"todos"} /> : null;
     return(
-      <h3>Display</h3>
+      <div>
+        { undoneTodos }  
+      </div>
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos
+    todos: state.todos.todos
   }
 }
 

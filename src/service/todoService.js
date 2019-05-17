@@ -11,6 +11,7 @@ class TodoService {
   getTodos = async () => {
     try {
      const { data } = await this.api.get('/todos')
+     
      return data
     } catch(err) {
       console.log(err)
