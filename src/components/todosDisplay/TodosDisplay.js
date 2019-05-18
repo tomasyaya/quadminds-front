@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { sendError } from '../../actions/errActions';
 import { getTodos } from '../../actions/actions';
 import TodoList from '../todoList/TodoList';
 
@@ -12,12 +14,13 @@ class TodosDisplay extends Component {
   }
 
   componentDidMount = async () => {
-    const { getTodos } = this.props;
+    const { getTodos, sendError, history: { push } } = this.props;
     try {
       await getTodos()
       this.setState({ isLoaded: true })
     } catch(err) {
-      console.log(err)
+      sendError(err)
+      push('/error')
     }
   }
 
@@ -47,4 +50,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getTodos } )(TodosDisplay);
+export default connect(mapStateToProps, { getTodos, sendError } )(withRouter(TodosDisplay));

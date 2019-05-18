@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { createTodo, updateTodo } from '../../actions/actions';
+import { sendError } from '../../actions/errActions';
 import { string } from 'prop-types';
 
 import './form.css';
@@ -11,7 +13,7 @@ const Form = props => {
   const [ title, setTitle ] = useState('')
   const [ body, setBody ] = useState('')
 
-  const { createTodo, updateTodo, id, header } = props;
+  const { createTodo, updateTodo, id, header, sendError, history: { push } } = props;
 
   const newTodo = { title, body }
   const valMessage = validation ? <p className="validation">{ "Complete all fields" }</p> : null;
@@ -23,19 +25,20 @@ const Form = props => {
       return
     }
     try {
-      if(!id){
-        await createTodo(todo)
+      if(!id){ 
+        await createTodo(todo) 
       }
-      if(id) {
-        await updateTodo(id, newTodo)
+      if(id) { 
+        await updateTodo(id, newTodo) 
       }
       setTitle('')
       setBody('')
     } catch(err) {
-      console.log(err)
+      sendError(err)
+      push('/error')
     }
   }
-
+  
   return(
     <div className="form-container">
       <form className="form ui segment" onSubmit={(e) => {
@@ -63,4 +66,4 @@ Form.propTypes = {
   id: string
 }
 
-export default connect(null, { createTodo, updateTodo })(Form);
+export default connect(null, { createTodo, updateTodo, sendError })(withRouter(Form));
