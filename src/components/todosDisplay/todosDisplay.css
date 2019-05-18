@@ -1,0 +1,15 @@
+.todo {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.done {
+  grid-column-start: 6;
+  grid-column-end: 7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

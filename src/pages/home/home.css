@@ -1,0 +1,9 @@
+.home-main-container {
+  display: grid;
+  grid-template-columns: 6% 28% 2% 28% 2% 28% 6%;
+  padding: 100px 0;
+  background-image: url('../../assets/images/absolutvision-468248-unsplash.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+

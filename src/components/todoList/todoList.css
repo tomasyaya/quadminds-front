@@ -1,0 +1,10 @@
+.list-container {
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.list-title {
+  font-size: 2em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}

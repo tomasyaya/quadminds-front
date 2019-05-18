@@ -1,0 +1,22 @@
+.form {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  height: 35vh;
+} 
+
+#body {
+  margin: 10px 0;
+}
+
+.validation {
+  color: red;
+  font-weight: bold;
+}
+
+.header {
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+

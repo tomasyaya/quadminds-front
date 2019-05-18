@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { getTodos } from '../../actions/actions';
 import TodoList from '../todoList/TodoList';
 
+import './todosDisplay.css';
+
 class TodosDisplay extends Component {
 
   state = {
@@ -24,12 +26,16 @@ class TodosDisplay extends Component {
     const { todos, done } = this.props;
     const undoneTodos = isLoaded ? <TodoList todos={ todos } title={"todos"} /> : null;
     const doneTodos = isLoaded ? <TodoList todos={ done } title={"done"} /> : null;
-    
+
     return(
-      <div>
-        { undoneTodos }  
-        { doneTodos }
-      </div>
+      <>
+        <div className="todo ui segment">
+          { undoneTodos }  
+        </div>
+        <div className="done ui segment">
+          { doneTodos }
+        </div>
+      </>
     )
   }
 }

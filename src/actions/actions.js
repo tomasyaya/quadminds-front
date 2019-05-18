@@ -1,13 +1,14 @@
-import { GET_TODOS, CREATE_TODO, UPDATE_TODO } from './actionType';
+import { GET_TODOS } from './actionType';
 import todoService from '../service/todoService';
 
 
 export const createTodo = todo => async dispatch => {
   try {
-    const newTodo = await todoService.createTodo(todo) 
+    await todoService.createTodo(todo) 
+    const todos = await todoService.getTodos()
     dispatch({
-      type: CREATE_TODO,
-      payload: newTodo
+      type: GET_TODOS,
+      payload: todos
     })
   } catch (err) {
     console.log(err)
@@ -31,7 +32,7 @@ export const updateTodo = (id, body) => async dispatch => {
     await todoService.updateTodo(id, body)
     const todos = await todoService.getTodos()
     dispatch({
-      type: UPDATE_TODO,
+      type: GET_TODOS,
       payload: todos
     })
   } catch(err) {
