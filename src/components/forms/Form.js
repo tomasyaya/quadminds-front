@@ -23,13 +23,12 @@ const Form = props => {
     try {
       if(!id){
         await createTodo(todo)
-        setTitle('')
-        setBody('')
       }
       if(id) {
-        console.log(newTodo)
         await updateTodo(id, newTodo)
       }
+      setTitle('')
+      setBody('')
     } catch(err) {
       console.log(err)
     }
