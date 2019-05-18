@@ -35,6 +35,15 @@ class TodoService {
     }
   }
 
+  deleteTodo = async id => {
+    try {
+      await this.api.delete(`/todos/${id}`)
+      return
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
 }
 
 const todoService = new TodoService();
