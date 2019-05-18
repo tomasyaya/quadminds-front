@@ -37,22 +37,24 @@ const Form = props => {
   }
 
   return(
-    <form className="form ui segment" onSubmit={(e) => {
-      e.preventDefault()
-      handleSubmit(newTodo)}
-      }>
-      { formTitle }
-      { valMessage }
-      <input type="text" placeholder="title" value={title} onChange={(e) => { 
-        setTitle(e.target.value) 
-        setValidation(false) }
-        }/>
-      <input id="body" placeholder="message" type="text" value={body} onChange={(e) => { 
-        setBody(e.target.value) 
-        setValidation(false)}
-        }/>
-      <input type="submit" value="submit" className="ui primary button" />
-    </form>
+    <div className="form-container">
+      <form className="form ui segment" onSubmit={(e) => {
+        e.preventDefault()
+        handleSubmit(newTodo)}
+        }>
+        { formTitle }
+        { valMessage }
+        <input type="text" placeholder="title" value={title} onChange={(e) => { 
+          setTitle(e.target.value) 
+          setValidation(false) }
+          }/>
+        <input id="body" placeholder="message" type="text" value={body} onChange={(e) => { 
+          setBody(e.target.value) 
+          setValidation(false)}
+          }/>
+        <input type="submit" value="submit" className="ui primary button" />
+      </form>
+    </div>
   )
 }
 

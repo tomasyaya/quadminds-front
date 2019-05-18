@@ -1,10 +1,23 @@
-import { GET_TODOS } from './actionType';
+import { GET_TODOS, GET_TODO } from './actionType';
 import todoService from '../service/todoService';
 
 
-export const createTodo = todo => async dispatch => {
+
+export const getTodo = id => async dispatch => {
   try {
-    await todoService.createTodo(todo) 
+    const todo = await todoService.getTodo(id)
+    dispatch({
+      type: GET_TODO,
+      payload: todo
+    })
+  } catch(err) {
+    console.log(err)
+  }
+  
+}
+
+export const getTodos = () => async dispatch => {
+  try {
     const todos = await todoService.getTodos()
     dispatch({
       type: GET_TODOS,
@@ -15,8 +28,9 @@ export const createTodo = todo => async dispatch => {
   }
 }
 
-export const getTodos = () => async dispatch => {
+export const createTodo = todo => async dispatch => {
   try {
+    await todoService.createTodo(todo) 
     const todos = await todoService.getTodos()
     dispatch({
       type: GET_TODOS,

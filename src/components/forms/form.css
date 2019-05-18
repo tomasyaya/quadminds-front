@@ -1,7 +1,7 @@
-.form {
+.form-container {
   grid-column-start: 2;
   grid-column-end: 3;
-  height: 35vh;
+  /* height: 35vh; */
 } 
 
 #body {

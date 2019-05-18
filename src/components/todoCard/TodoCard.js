@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { string } from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { updateTodo, deleteTodo } from '../../actions/actions';
 import Form from '../forms/Form';
 
@@ -21,11 +22,11 @@ const TodoCard = props => {
   const deleteButton = id ? <button className="ui inverted red button" onClick={() => deleteTodo(id)}>{"Remove"}</button> : null;
   return (
     <div className="card">
-      <div>
+      <Link to={`/${id}`}>
         { showTitle }
         { showBody }
         { displayForm }
-      </div>
+      </Link> 
       <div className="card-buttons">
         { editButton }
         { statusButton }
