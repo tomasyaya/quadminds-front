@@ -21,12 +21,14 @@ class TodosDisplay extends Component {
 
   render() {
     const { isLoaded } = this.state;
-    const { todos } = this.props;
-    console.log(todos)
+    const { todos, done } = this.props;
     const undoneTodos = isLoaded ? <TodoList todos={ todos } title={"todos"} /> : null;
+    const doneTodos = isLoaded ? <TodoList todos={ done } title={"done"} /> : null;
+    
     return(
       <div>
         { undoneTodos }  
+        { doneTodos }
       </div>
     )
   }
@@ -34,7 +36,8 @@ class TodosDisplay extends Component {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todos.todos
+    todos: state.todos.todos,
+    done: state.todos.done
   }
 }
 
