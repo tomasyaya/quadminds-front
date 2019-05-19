@@ -22,11 +22,13 @@ const TodoCard = props => {
   const deleteButton = id ? <button className="ui inverted red button" onClick={() => deleteTodo(id)}>{"Remove"}</button> : null;
   return (
     <div className="card">
-      <Link to={`/${id}`}>
-        { showTitle }
-        { showBody }
-        { displayForm }
-      </Link> 
+      <div>
+        <Link to={`/${id}`}>
+          { showTitle }
+          { showBody }
+        </Link> 
+          { displayForm }
+      </div>
       <div className="card-buttons">
         { editButton }
         { statusButton }
